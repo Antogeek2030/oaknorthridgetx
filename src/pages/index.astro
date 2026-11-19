@@ -1,0 +1,118 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { services } from '../data/services';
+
+const title = 'AC Repair Oak Ridge North TX | Air Conditioning Service';
+const description = 'Professional AC repair, maintenance, and installation in Oak Ridge North, TX and The Woodlands area. Call for fast, reliable cooling service.';
+const featured = services.slice(0, 6);
+const phone = '(281) 555-0192';
+const phoneLink = 'tel:+12815550192';
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="hero">
+    <div class="container">
+      <h1>AC Repair in Oak Ridge North, TX</h1>
+      <p>
+        Air conditioning repair, maintenance, and system replacements for homes around Oak Ridge North and The Woodlands. Clear diagnosis, practical repairs, and honest advice.
+      </p>
+      <div class="hero-actions">
+        <a href={phoneLink} class="btn btn-primary">Call {phone}</a>
+        <a href="/contact/" class="btn btn-outline">Request Service</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Cooling Services We Offer</h2>
+      <p class="section-subtitle">
+        From no-cooling emergencies to seasonal tune-ups and full system replacements.
+      </p>
+      <div class="card-grid">
+        {featured.map((s) => (
+          <article class="card">
+            <h3><a href={`/services/${s.slug}/`}>{s.title}</a></h3>
+            <p>{s.shortDesc}</p>
+            <a href={`/services/${s.slug}/`} class="btn btn-outline" style="padding:0.5rem 1rem;font-size:0.9rem;">Learn more</a>
+          </article>
+        ))}
+      </div>
+      <p class="text-center" style="margin-top:2rem;">
+        <a href="/services/" class="btn btn-primary">View All Services</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Why Homeowners Call Us</h2>
+      <p class="section-subtitle">Straightforward service focused on restoring cooling safely and efficiently.</p>
+      <div class="trust-grid">
+        <div class="trust-item">
+          <div class="icon" aria-hidden="true">🔧</div>
+          <h3>Thorough Diagnostics</h3>
+          <p>We identify the real cause so repairs last.</p>
+        </div>
+        <div class="trust-item">
+          <div class="icon" aria-hidden="true">🏠</div>
+          <h3>Local &amp; Responsive</h3>
+          <p>Based near Oak Ridge North and familiar with local systems and climate.</p>
+        </div>
+        <div class="trust-item">
+          <div class="icon" aria-hidden="true">💬</div>
+          <h3>Clear Communication</h3>
+          <p>Plain-language explanations and upfront pricing before work begins.</p>
+        </div>
+        <div class="trust-item">
+          <div class="icon" aria-hidden="true">✅</div>
+          <h3>Heat-Season Ready</h3>
+          <p>We understand Texas summers and prioritize no-cooling calls when heat is extreme.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">What Customers Say</h2>
+      <p class="section-subtitle">Feedback from homeowners we have served in the Oak Ridge North area.</p>
+      <div class="review-grid">
+        <div class="review-card">
+          <div class="stars" aria-label="5 stars">★★★★★</div>
+          <blockquote>
+            “AC stopped cooling on a 98-degree day. They diagnosed a failed capacitor, replaced it the same visit, and cooling was back quickly.”
+          </blockquote>
+          <cite>— Homeowner in Oak Ridge North</cite>
+        </div>
+        <div class="review-card">
+          <div class="stars" aria-label="5 stars">★★★★★</div>
+          <blockquote>
+            “Honest about what needed fixing versus what could wait. Appreciate the clear explanation of our refrigerant issue.”
+          </blockquote>
+          <cite>— Resident in The Woodlands</cite>
+        </div>
+        <div class="review-card">
+          <div class="stars" aria-label="5 stars">★★★★★</div>
+          <blockquote>
+            “Scheduled a tune-up before summer. Technician was thorough and left a written summary. System has been reliable so far.”
+          </blockquote>
+          <cite>— Customer in Spring</cite>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Need AC Help?</h2>
+        <p>Call for fast scheduling or send a message describing what is happening with your system.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;">
+          <a href={phoneLink} class="btn btn-primary" style="background:white;color:var(--color-secondary);">Call {phone}</a>
+          <a href="/contact/" class="btn btn-outline" style="border-color:white;color:white;">Contact Form</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

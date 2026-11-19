@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { areas, getAreaBySlug } from '../../data/areas';
+import { services } from '../../data/services';
+
+export function getStaticPaths() {
+  return areas.map((a) => ({
+    params: { slug: a.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const area = getAreaBySlug(slug!);
+
+if (!area) {
+  return Astro.redirect('/404');
+}
+
+const title = `AC Repair in ${area.name} | AC Repair Oak Ridge North TX`;
+const description = `Air conditioning repair and maintenance in ${area.name}, TX. Local technicians serving the Oak Ridge North and Woodlands area.`;
+const phone = '(281) 555-0192';
+const phoneLink = 'tel:+12815550192';
+const relatedServices = services.slice(0, 5);
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a> / <a href="/service-areas/">Service Areas</a> / <span>{area.name}</span>
+      </nav>
+      <h1>AC Repair in {area.name}</h1>
+      <p>Air conditioning service for {area.name} homes.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:800px;">
+      <p>{area.intro}</p>
+      <h2>Why Local Service Matters</h2>
+      <ul>
+        {area.highlights.map((h) => (
+          <li>{h}</li>
+        ))}
+      </ul>
+      <p>
+        <a href={phoneLink} class="btn btn-primary">Call {phone}</a>
+        <a href="/contact/" class="btn btn-outline" style="margin-left:0.75rem;">Request Service</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Popular Services in {area.name}</h2>
+      <div class="card-grid">
+        {relatedServices.map((s) => (
+          <article class="card">
+            <h3><a href={`/services/${s.slug}/`}>{s.title}</a></h3>
+            <p>{s.shortDesc}</p>
+            <a href={`/services/${s.slug}/`} class="btn btn-outline" style="padding:0.5rem 1rem;font-size:0.9rem;">Learn more</a>
+          </article>
+        ))}
+      </div>
+      <p class="text-center" style="margin-top:1.5rem;">
+        <a href="/services/">View all services</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Need Service in {area.name}?</h2>
+        <p>Reach out to schedule a repair, tune-up, or system evaluation.</p>
+        <a href={phoneLink} class="btn btn-primary" style="background:white;color:var(--color-secondary);">Call {phone}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const title = `${post.data.title} | AC Repair Oak Ridge North TX`;
+const description = post.data.description;
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a> / <a href="/blog/">Blog</a> / <span>{post.data.title}</span>
+      </nav>
+      <h1>{post.data.title}</h1>
+      <p>
+        <time datetime={post.data.pubDate.toISOString()}>
+          {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </time>
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:720px;">
+      <article class="prose">
+        <Content />
+      </article>
+      <p style="margin-top:2.5rem;">
+        <a href="/blog/">← Back to all articles</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .prose :global(h2) {
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  .prose :global(p) {
+    margin-bottom: 1.1rem;
+  }
+  .prose :global(ul) {
+    margin-bottom: 1.1rem;
+  }
+  .prose :global(a) {
+    text-decoration: underline;
+  }
+</style>

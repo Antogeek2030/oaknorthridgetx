@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'About Us | AC Repair Oak Ridge North TX';
+const description = 'Learn about our local Oak Ridge North AC repair team. We focus on honest diagnostics, quality workmanship, and clear communication.';
+const phone = '(281) 555-0192';
+const phoneLink = 'tel:+12815550192';
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a> / <span>About</span>
+      </nav>
+      <h1>About AC Repair Oak Ridge North TX</h1>
+      <p>Local air conditioning service built on careful diagnostics and straightforward communication.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:800px;">
+      <p>
+        AC Repair Oak Ridge North TX helps homeowners keep their air conditioning systems running reliably through the long Texas cooling season. We serve Oak Ridge North, The Woodlands, and surrounding communities with repair, maintenance, and installation support.
+      </p>
+      <p>
+        Our approach is simple: diagnose accurately, explain options clearly, and complete the work with care. Whether you need a same-day repair or are planning a system upgrade, we aim to make the process understandable and respectful of your time and home.
+      </p>
+      <h2>What Guides Our Work</h2>
+      <ul>
+        <li><strong>Honest diagnostics</strong> — We identify the real issue instead of guessing or upselling unnecessary work.</li>
+        <li><strong>Clear pricing</strong> — You know the cost before work begins.</li>
+        <li><strong>Local focus</strong> — We know the Houston-area climate, common system types, and neighborhood layouts.</li>
+        <li><strong>Heat-season priority</strong> — No-cooling calls during extreme heat are treated with urgency.</li>
+      </ul>
+      <h2>Service Area</h2>
+      <p>
+        We serve Oak Ridge North, The Woodlands, Spring, Conroe, Shenandoah, Magnolia, Tomball, Porter, and nearby communities. If you are unsure whether we cover your address, <a href="/contact/">contact us</a> and we will let you know.
+      </p>
+      <p>
+        <a href={phoneLink} class="btn btn-primary">Call {phone}</a>
+        <a href="/contact/" class="btn btn-outline" style="margin-left:0.75rem;">Send a Message</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>

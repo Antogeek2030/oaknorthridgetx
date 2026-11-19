@@ -1,0 +1,171 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description,
+  canonical = Astro.url.href,
+  ogImage = 'https://acrepairoakridgenorthtx.us/og-default.jpg',
+} = Astro.props;
+
+const siteName = 'AC Repair Oak Ridge North TX';
+const phone = '(281) 555-0192';
+const phoneLink = 'tel:+12815550192';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#0284c7" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="/" class="logo" aria-label="AC Repair Oak Ridge North TX home">
+          AC<span>Repair</span>ORN
+        </a>
+
+        <nav class="nav" aria-label="Main navigation">
+          <a href="/">Home</a>
+          <div class="dropdown">
+            <button class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+              Services
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+            </button>
+            <div class="dropdown-menu" role="menu">
+              <a href="/services/" role="menuitem">All Services</a>
+              <a href="/services/ac-repair/" role="menuitem">AC Repair</a>
+              <a href="/services/ac-maintenance/" role="menuitem">AC Maintenance</a>
+              <a href="/services/ac-installation/" role="menuitem">AC Installation</a>
+              <a href="/services/emergency-ac-repair/" role="menuitem">Emergency AC Repair</a>
+              <a href="/services/ac-replacement/" role="menuitem">AC Replacement</a>
+              <a href="/services/" role="menuitem">View all services →</a>
+            </div>
+          </div>
+          <a href="/service-areas/">Service Areas</a>
+          <a href="/about/">About</a>
+          <a href="/blog/">Blog</a>
+          <a href="/contact/">Contact</a>
+        </nav>
+
+        <a href={phoneLink} class="btn btn-primary header-cta" aria-label="Call us now">
+          {phone}
+        </a>
+
+        <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" id="menu-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+        <a href="/">Home</a>
+        <a href="/services/">Services</a>
+        <div class="mobile-dropdown">
+          <a href="/services/ac-repair/">AC Repair</a>
+          <a href="/services/ac-maintenance/">AC Maintenance</a>
+          <a href="/services/ac-installation/">AC Installation</a>
+          <a href="/services/emergency-ac-repair/">Emergency AC Repair</a>
+          <a href="/services/ac-replacement/">AC Replacement</a>
+        </div>
+        <a href="/service-areas/">Service Areas</a>
+        <a href="/about/">About</a>
+        <a href="/blog/">Blog</a>
+        <a href="/contact/">Contact</a>
+        <a href={phoneLink} class="btn btn-primary" style="margin-top:1rem;">{phone}</a>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <h3>AC Repair Oak Ridge North TX</h3>
+            <p style="margin-bottom:0.75rem;">Professional air conditioning repair and service for Oak Ridge North, The Woodlands, and surrounding communities.</p>
+            <p style="margin:0;">
+              <strong style="color:white;">27355 Blueberry Hill Dr #41</strong><br />
+              Oak Ridge North, TX 77385<br />
+              <a href={phoneLink}>{phone}</a>
+            </p>
+          </div>
+          <div>
+            <h3>Services</h3>
+            <a href="/services/ac-repair/">AC Repair</a>
+            <a href="/services/ac-maintenance/">AC Maintenance</a>
+            <a href="/services/ac-installation/">AC Installation</a>
+            <a href="/services/emergency-ac-repair/">Emergency AC Repair</a>
+            <a href="/services/ac-replacement/">AC Replacement</a>
+            <a href="/services/">All Services</a>
+          </div>
+          <div>
+            <h3>Service Areas</h3>
+            <a href="/service-areas/oak-ridge-north/">Oak Ridge North</a>
+            <a href="/service-areas/the-woodlands/">The Woodlands</a>
+            <a href="/service-areas/spring/">Spring</a>
+            <a href="/service-areas/conroe/">Conroe</a>
+            <a href="/service-areas/shenandoah/">Shenandoah</a>
+            <a href="/service-areas/">All Areas</a>
+          </div>
+          <div>
+            <h3>Company</h3>
+            <a href="/about/">About Us</a>
+            <a href="/contact/">Contact</a>
+            <a href="/blog/">Blog</a>
+            <a href="/privacy/">Privacy Policy</a>
+            <a href="/terms/">Terms of Service</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; {new Date().getFullYear()} AC Repair Oak Ridge North TX. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <a href={phoneLink} class="btn btn-accent sticky-call" aria-label="Call now for AC repair">
+      📞 Call Now
+    </a>
+
+    <script>
+      const toggle = document.getElementById('menu-toggle');
+      const mobileNav = document.getElementById('mobile-nav');
+      if (toggle && mobileNav) {
+        toggle.addEventListener('click', () => {
+          const open = mobileNav.classList.toggle('open');
+          toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+      }
+    </script>
+  </body>
+</html>

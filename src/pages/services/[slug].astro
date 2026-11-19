@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { services, getServiceBySlug } from '../../data/services';
+
+export function getStaticPaths() {
+  return services.map((s) => ({
+    params: { slug: s.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const service = getServiceBySlug(slug!);
+
+if (!service) {
+  return Astro.redirect('/404');
+}
+
+const title = `${service.title} in Oak Ridge North TX | AC Repair Oak Ridge North TX`;
+const description = `${service.shortDesc} Serving Oak Ridge North, The Woodlands, Spring, and nearby communities.`;
+const phone = '(281) 555-0192';
+const phoneLink = 'tel:+12815550192';
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a> / <a href="/services/">Services</a> / <span>{service.title}</span>
+      </nav>
+      <h1>{service.title}</h1>
+      <p>{service.shortDesc}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:800px;">
+      <p>{service.intro}</p>
+      <p>
+        <a href={phoneLink} class="btn btn-primary">Call {phone}</a>
+        <a href="/contact/" class="btn btn-outline" style="margin-left:0.75rem;">Request Service</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">How the Process Works</h2>
+      <div class="process-steps">
+        {service.process.map((step) => (
+          <div class="process-step">
+            <p class="mb-0">{step}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:800px;">
+      <h2>Typical Price Range</h2>
+      <p>{service.priceRange}</p>
+      <p style="color:var(--color-muted);font-size:0.95rem;">
+        Final cost depends on the specific diagnosis, parts required, and system configuration. We provide clear pricing before any work begins.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container" style="max-width:800px;">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="faq-list">
+        {service.faqs.map((faq) => (
+          <details>
+            <summary>{faq.q}</summary>
+            <p>{faq.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Ready for {service.title}?</h2>
+        <p>Call or send a message to schedule service in the Oak Ridge North area.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;">
+          <a href={phoneLink} class="btn btn-primary" style="background:white;color:var(--color-secondary);">Call {phone}</a>
+          <a href="/contact/" class="btn btn-outline" style="border-color:white;color:white;">Contact Form</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

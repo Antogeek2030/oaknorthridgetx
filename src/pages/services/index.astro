@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { services } from '../../data/services';
+
+const title = 'AC Services in Oak Ridge North TX | Repair, Maintenance & Installation';
+const description = 'Browse AC repair, maintenance, installation, and emergency cooling service for Oak Ridge North, The Woodlands, and nearby communities.';
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a> / <span>Services</span>
+      </nav>
+      <h1>Our AC Services</h1>
+      <p>Air conditioning repair, maintenance, and installations for Oak Ridge North area homes.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="card-grid">
+        {services.map((s) => (
+          <article class="card">
+            <h2 style="font-size:1.2rem;"><a href={`/services/${s.slug}/`}>{s.title}</a></h2>
+            <p>{s.shortDesc}</p>
+            <a href={`/services/${s.slug}/`} class="btn btn-outline" style="padding:0.5rem 1rem;font-size:0.9rem;">Details</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Not Sure Which Service You Need?</h2>
+        <p>Describe what is happening with your AC and we will help point you in the right direction.</p>
+        <a href="/contact/" class="btn btn-primary" style="background:white;color:var(--color-secondary);">Contact Us</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

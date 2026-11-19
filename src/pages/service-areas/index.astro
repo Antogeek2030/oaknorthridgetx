@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { areas } from '../../data/areas';
+
+const title = 'AC Service Areas | Oak Ridge North TX & The Woodlands';
+const description = 'AC repair and maintenance across Oak Ridge North, The Woodlands, Spring, Conroe, Shenandoah, Magnolia, Tomball, and Porter, TX.';
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a> / <span>Service Areas</span>
+      </nav>
+      <h1>Areas We Serve</h1>
+      <p>Professional air conditioning service throughout the Oak Ridge North and Woodlands region.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="card-grid">
+        {areas.map((a) => (
+          <article class="card">
+            <h2 style="font-size:1.2rem;"><a href={`/service-areas/${a.slug}/`}>{a.name}</a></h2>
+            <p>{a.intro.slice(0, 140)}…</p>
+            <a href={`/service-areas/${a.slug}/`} class="btn btn-outline" style="padding:0.5rem 1rem;font-size:0.9rem;">Service details</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Don't See Your Neighborhood?</h2>
+        <p>We serve many communities around Oak Ridge North and The Woodlands. Contact us to confirm coverage for your address.</p>
+        <a href="/contact/" class="btn btn-primary" style="background:white;color:var(--color-secondary);">Ask About Service</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
